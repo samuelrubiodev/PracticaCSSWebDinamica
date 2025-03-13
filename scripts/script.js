@@ -4,19 +4,33 @@ function cambiarColores(colorFondo, color, ruta) {
     document.getElementsByClassName("product-image")[0].style.backgroundImage = ruta;
 }
 
+document.querySelector(".white").addEventListener("click",()=>{
+    cambiarColores('white','black','url(../public/img/evoque-white.png)');
+});
+
+document.querySelector(".gray").addEventListener("click", ()=>{
+    cambiarColores('gray','white','url(../public/img/evoque-grey.png)');
+});
+
+document.querySelector(".black").addEventListener("click", ()=>{
+    cambiarColores('black','white','url(../public/img/evoque-black.png)');
+});
+
+document.querySelector(".red").addEventListener("click", ()=>{
+    cambiarColores('red','white','url(../public/img/evoque-red.jpeg)')
+});
+
 function comprar() {
-    let productCard = document.getElementsByClassName("product-card")[0];
-    let productDescription = productCard.getElementsByClassName("product-description")[0];
-    
-    productDescription.removeChild(productDescription.getElementsByClassName("tag")[0]);
-    productDescription.removeChild(productDescription.getElementsByClassName("product-details")[0]);
-    productDescription.removeChild(productDescription.getElementsByClassName("product_details_text")[0]);
-    productDescription.removeChild(productDescription.getElementsByClassName("colors-price")[0]);
-    productDescription.removeChild(document.getElementById("button"));
+    let productCard = document.querySelector(".product-card");
+    let productDescription = productCard.querySelector(".product-description");
 
-    let productTitle = productDescription.getElementsByClassName("product-title")[0];
+    while (productDescription.firstChild) {
+        productDescription.removeChild(productDescription.firstChild);
+    }
 
-    productTitle.style.marginTop = "10%";
-    productTitle.style.fontSize = "0.75rem";
-    productTitle.textContent = "Enhorabuena, has adquirido un espectacular Range Rover Evoque";
+    let mensaje = document.createElement("h1");
+
+    mensaje.textContent = "Enhorabuena, has adquirido un espectacular Range Rover Evoque";
+    mensaje.style.fontSize = "0.7rem";
+    productDescription.appendChild(mensaje);
 }
